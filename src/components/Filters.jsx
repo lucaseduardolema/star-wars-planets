@@ -1,5 +1,14 @@
-import React, { useContext } from 'react';
-import AppContext from '../context/AppContext';
+import React, { useContext } from "react";
+import AppContext from "../context/AppContext";
+
+const operators = ["maior que", "menor que", "igual a"];
+const odernations = [
+  "orbital_period",
+  "diameter",
+  "rotation_period",
+  "surface_water",
+  "population",
+];
 
 function Filters() {
   const {
@@ -17,6 +26,7 @@ function Filters() {
     handleSortParam,
     handleSort,
   } = useContext(AppContext);
+
   return (
     <div>
       <div>
@@ -25,23 +35,23 @@ function Filters() {
           data-testid="name-filter"
           type="text"
           placeholder="Pesquisar"
-          value={ nameFilter }
+          value={nameFilter}
           name="test"
-          onChange={ handleNameFilter }
+          onChange={handleNameFilter}
         />
       </div>
 
       <label htmlFor="coluna">
         Coluna
         <select
-          name="coluna"
+          name="column"
           id="coluna"
           data-testid="column-filter"
-          value={ column }
-          onChange={ handleInputsFilters }
+          value={column}
+          onChange={handleInputsFilters}
         >
           {collumItens.map((e) => (
-            <option key={ e } value={ e }>
+            <option key={e} value={e}>
               {e}
             </option>
           ))}
@@ -51,15 +61,17 @@ function Filters() {
       <label htmlFor="range">
         Operador
         <select
-          name="range"
+          name="comparison"
           id="range"
           data-testid="comparison-filter"
-          value={ comparison }
-          onChange={ handleInputsFilters }
+          value={comparison}
+          onChange={handleInputsFilters}
         >
-          <option value="maior que">maior que</option>
-          <option value="menor que">menor que</option>
-          <option value="igual a">igual a</option>
+          {operators.map((operator) => (
+            <option key={operator} value={operator}>
+              {operator}
+            </option>
+          ))}
         </select>
       </label>
 
@@ -70,29 +82,25 @@ function Filters() {
           type="number"
           min="0"
           id="numRange"
-          name="numRange"
-          value={ value }
-          onChange={ handleInputsFilters }
+          name="value"
+          value={value}
+          onChange={handleInputsFilters}
         />
       </label>
 
       <button
         data-testid="button-filter"
         type="button"
-        onClick={ handleClickFilter }
+        onClick={handleClickFilter}
       >
         Filtrar
       </button>
 
       {usedFiltersInput.map((e) => (
-        <div key={ e.column } data-testid="filter">
+        <div key={e.column} data-testid="filter">
           <span>{`${e.column} ${e.comparison} ${e.value}`}</span>
-          <button
-            onClick={ removeOneFilter }
-            name={ e.column }
-            type="button"
-          >
-            { `Remover-${e.column}` }
+          <button onClick={removeOneFilter} name={e.column} type="button">
+            {`Remover-${e.column}`}
           </button>
         </div>
       ))}
@@ -104,14 +112,14 @@ function Filters() {
             data-testid="column-sort"
             name="odernation"
             id="odernation"
-            value={ sortParam }
-            onChange={ handleSortParam }
+            value={sortParam}
+            onChange={handleSortParam}
           >
-            <option value="orbital_period">orbital_period</option>
-            <option value="diameter">diameter</option>
-            <option value="rotation_period">rotation_period</option>
-            <option value="surface_water">surface_water</option>
-            <option value="population">population</option>
+            {odernations.map((order) => (
+              <option key={order} value={order}>
+                {order.split("_").join(" ")}
+              </option>
+            ))}
           </select>
         </label>
 
@@ -123,7 +131,7 @@ function Filters() {
             id="ASC"
             name="sortDirection"
             value="ASC"
-            onChange={ handleSortDirection }
+            onChange={handleSortDirection}
           />
         </label>
 
@@ -135,14 +143,14 @@ function Filters() {
             name="sortDirection"
             id="DESC"
             value="DESC"
-            onChange={ handleSortDirection }
+            onChange={handleSortDirection}
           />
         </label>
 
         <button
           data-testid="column-sort-button"
           type="button"
-          onClick={ handleSort }
+          onClick={handleSort}
         >
           Ordenar
         </button>
@@ -151,7 +159,7 @@ function Filters() {
       <button
         data-testid="button-remove-filters"
         type="button"
-        onClick={ removeAllFilters }
+        onClick={removeAllFilters}
       >
         Remover Filtros
       </button>
