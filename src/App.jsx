@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import './App.css';
 import Filters from './components/Filters';
 import Hero from './components/Hero';
-import Table from './components/Table';
+import TableComponent from './components/TableComponent';
 import AppProvider from './context/AppProvider';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <h1 className='display-1'>Star Wars Planets</h1>
       </Container>
       <Filters />
-      <Table />
+      <TableComponent />
     </AppProvider>
   );
 }
