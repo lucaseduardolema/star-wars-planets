@@ -9,7 +9,7 @@ function TableComponent() {
     <Container fluid>
       <Table striped bordered hover size="sm" variant="dark" responsive>
         <thead>
-          <tr>
+          <tr className="align-middle text-center">
             {headerTitles.map((title) => (
               <th key={title}>{title.split("_").join(" ").toUpperCase()}</th>
             ))}
@@ -33,20 +33,29 @@ function TableComponent() {
                 edited,
                 url,
               }) => (
-                <tr key={name}>
+                <tr className="align-middle text-center" key={name}>
                   <td data-testid="planet-name">{name}</td>
                   <td>{rotationPeriod}</td>
                   <td>{orbital}</td>
                   <td>{diameter}</td>
-                  <td>{climate}</td>
-                  <td>{gravity}</td>
-                  <td>{terrain}</td>
+                  <td className="text-capitalize">{climate}</td>
+                  <td className="text-capitalize">{gravity}</td>
+                  <td className="text-capitalize ">{terrain}</td>
                   <td>{water}</td>
                   <td>{population}</td>
-                  <td>{films}</td>
-                  <td>{created}</td>
-                  <td>{edited}</td>
-                  <td>{url}</td>
+                  <td>
+                    {films.map((film) => (
+                      <a href={film}>{`${film
+                        .slice(38, 45)
+                        .split("/")
+                        .join(" ")}, `}</a>
+                    ))}
+                  </td>
+                  <td>{created.slice(0, 10).split("-").reverse().join("/")}</td>
+                  <td>{edited.slice(0, 10).split("-").reverse().join("/")}</td>
+                  <td>
+                    <a href={url}>Visit Planet</a>
+                  </td>
                 </tr>
               )
             )}
