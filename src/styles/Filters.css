@@ -1,0 +1,28 @@
+.form-check {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0 15px;
+}
+
+.filters-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 20px;
+  width: 100%;
+}
+
+.remove-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

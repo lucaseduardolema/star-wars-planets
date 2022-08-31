@@ -8,7 +8,7 @@ function Table() {
       <thead>
         <tr>
           {headerTitles.map((title) => (
-            <th key={ title }>{title.split('_').join(' ')}</th>
+            <th key={ title }>{title.split('_').join(' ').toUpperCase()}</th>
           ))}
         </tr>
       </thead>
